@@ -6,8 +6,51 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>HY's HOME</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    <h2>Hello World!!!</h2>
+<div id="music">
+    <div class="nav">
+        <img src="logo.png" alt="logo">
+        <div class="nav_search">
+            <input type="text" autocomplete="off" v-model="query" @keyup.enter="searchMusic">
+            <img src="search.png" alt="search">
+        </div>
+    </div>
+<div class="section">
+    <div class="musicList">
+        <h3>歌曲列表</h3>
+        <ul>
+            <li v-for="item in musicList" v-for="items in artists">
+                <a href="javascript:;" @click="playMusic(item.id)"><img src="play.png" alt=""></a>
+                <b>{{item.name}}</b>
+            </li>
+        </ul>
+    </div>
+    <div class="player">
+        <img :src="pic" alt="" class="pic_song">
+    </div>
+    <div class="comments">
+        <h3>热门评论</h3>
+        <ul>
+            <li v-for="item in Comments">
+                <img :src="item.user.avatarUrl" alt="" class="ava">
+                <div class="speaker">
+                <div id="name">{{item.user.nickname}}:</div>
+                <p>{{item.content}}</b>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="audio_con">
+    <audio ref='audio' :src="musicUrl" controls autoplay loop class="myaudio" ></audio>
+</div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
